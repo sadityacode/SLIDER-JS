@@ -107,7 +107,7 @@ li {
 /*=================================
   main styling starts here
 =================================*/
-.slider div:first-child{
+.slider div:first-child {
   position: relative;
   overflow: hidden;
 }
@@ -237,12 +237,19 @@ h2 {
   font-family: "fontAwesome";
   text-indent: 0;
   float: right;
-  color: rgba(0,0,0,0.2);
+  color: transparent;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
   font-size: 20px;
+  width: 13px;
+  height: 13px;
+  -webkit-transition:.2s ease-in-out ;
+  transition:.2s ease-in-out ;
 }
 
 .dot:hover::before{
-  color: rgba(0,0,0,0.6);
+  background-color: rgba(255,255,255,1);
+  border-color: #FFF;
 }
 
 .slider-controls li{
@@ -256,9 +263,24 @@ h2 {
 }
 
 .active::before{
-  color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.6);
 }
 
 /*=================================
   main styling ends here
 =================================*/
+
+
+.slider-controls li:last-child{
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  width: 6%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  
+}

@@ -15,9 +15,8 @@ prevBtn.addEventListener("click", prev);
 
 // pre-styling
 let counter = 1;
-var size = slide[0].clientWidth;
 
-slides.style.transform = 'translateX(' + (-size * counter) + 'px)';
+slides.style.transform = 'translateX(' + ( -100 * counter) + '%)';
 
 // function for next slide
 function next() {
@@ -27,7 +26,7 @@ function next() {
   else {
     slides.classList.remove("active-slide");
     counter++;
-    slides.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    slides.style.transform = 'translateX(' + (-100 * counter) + '%)';
     var currentDot = document.querySelector(".active");
     var nxtDot = currentDot.nextElementSibling;
     if (!nxtDot) {
@@ -46,7 +45,7 @@ function prev() {
   else {
     slides.classList.remove("active-slide");
     counter--;
-    slides.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    slides.style.transform = 'translateX(' + (-100 * counter) + '%)';
     var currentDot = document.querySelector(".active");
     var prevDot = currentDot.previousElementSibling;
     if (!prevDot) {
@@ -62,13 +61,13 @@ function backtoOrigin() {
   if (slide[counter].id === "lastClone") {
     slides.classList.add("active-slide")
     counter = slide.length - 2;
-    slides.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    slides.style.transform = 'translateX(' + (-100 * counter) + '%)';
   }
 
   if (slide[counter].id === "firstClone") {
     slides.classList.add("active-slide")
     counter = slide.length - counter;
-    slides.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    slides.style.transform = 'translateX(' + (-100 * counter) + '%)';
   }
 }
 
@@ -77,7 +76,7 @@ for (var i = 0; i < elements.length; i++) {
   elements[i].onclick = function () {
     slides.classList.remove("active-slide");
     counter = this.innerHTML;
-    slides.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    slides.style.transform = 'translateX(' + (-100 * counter) + '%)';
 
     var currentDot = document.querySelector(".active");
     var targetDot = this;
@@ -91,3 +90,23 @@ function updateDots(currentDot, targetDot) {
   currentDot.classList.remove("active");
   targetDot.classList.add("active");
 }
+
+// function for animating slides
+function animate() {
+  if (counter >= slide.length - 1) {
+    return;
+  }
+  else {
+    slides.classList.remove("active-slide");
+    counter++;
+    slides.style.transform = 'translateX(' + (-100 * counter) + '%)';
+    var currentDot = document.querySelector(".active");
+    var nxtDot = currentDot.nextElementSibling;
+    if (!nxtDot) {
+      nxtDot = elements[0];
+    }
+    
+    updateDots(currentDot, nxtDot);
+  }
+}
+setInterval(animate, 4000);
